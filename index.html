@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: #f0f4f8;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        overflow: hidden; 
+      }
+
+      .main {
+        background-color: #fff7e6;
+        padding: 30px;
+        border-radius: 15px;
+        width: 400px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      button {
+        margin: 10px;
+        padding: 12px 25px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      button:first-of-type {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      #no-button {
+        background-color: #f44336;
+        color: white;
+        position: absolute;
+      }
+
+      button:hover {
+        transform: scale(1.05);
+      }
+
+      button:first-of-type:hover {
+        background-color: #45a049;
+      }
+
+      #no-button:hover {
+        background-color: #e53935;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main" id="main-content">
+      <h1>Are You Like Me?</h1>
+      <div style="margin-right: 90px;">
+        <button id="yes-button">Yes</button>
+        <button id="no-button">No</button>
+      </div>
+    </div>
+
+    <script>
+      const noButton = document.getElementById("no-button");
+      const yesButton = document.getElementById("yes-button");
+      const mainContent = document.getElementById("main-content");
+
+      // Function to generate a random position for the "No" button
+      function moveButton() {
+        const buttonWidth = noButton.offsetWidth;
+        const buttonHeight = noButton.offsetHeight;
+
+        const maxX = window.innerWidth - buttonWidth;
+        const maxY = window.innerHeight - buttonHeight;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
+        noButton.style.left = `${x}px`;
+        noButton.style.top = `${y}px`;
+      }
+
+      // Function to remove content and show the image when "Yes" is clicked
+      function showImage() {
+        // Clear all content inside the main div
+        mainContent.innerHTML = '';
+
+        // Create and append the image element
+        const img = document.createElement('img');
+        img.src = './just.webp'
+        img.alt = 'You clicked Yes!';
+        mainContent.appendChild(img);
+      }
+
+      // Event listeners
+      noButton.addEventListener("mouseover", moveButton);
+      yesButton.addEventListener("click", showImage);
+    </script>
+  </body>
+</html>
